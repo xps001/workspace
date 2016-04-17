@@ -1,0 +1,52 @@
+package com.test3;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.sql.*;
+import java.util.*;
+
+public class Demo1_3 extends JFrame{
+	JPanel jp1,jp2=null;
+	JTextField jtf=null;
+	JButton jb1,jb2,jb3,jb4=null;
+	JLabel jl1=null;
+	JTable jt1=null;
+	JTable jt2=null;
+	JScrollPane jsp=null;
+	StuModel sm=null;
+    Vector rowData,columnNames;
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Demo1_3 demo1_3=new Demo1_3();
+	}
+public Demo1_3(){
+	
+	jp1=new JPanel();
+	jtf=new JTextField(10);
+	jb1=new JButton("查询");
+	jl1=new JLabel("请输入名字");
+	jp1.add(jtf);
+	jp1.add(jb1);
+	jp1.add(jl1);
+	
+	jp2=new JPanel();
+	jb2=new JButton("添加");
+	jb3=new JButton("修改");
+	jb4=new JButton("删除");
+	jp2.add(jb2);
+	jp2.add(jb3);
+	jp2.add(jb4);
+	
+	sm=new StuModel();
+	jt2=new JTable(sm);
+	jsp=new JScrollPane(jt2);
+    this.add(jsp);
+	this.add(jp1,"North");
+	this.add(jp2,"South");
+	this.setSize(400,300);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.setVisible(true);		
+}
+}

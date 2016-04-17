@@ -1,0 +1,86 @@
+package com.test3;
+
+import java.util.Vector;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.*;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.sql.*;
+import java.util.*;
+
+public class StuModel extends AbstractTableModel{
+    Vector rowData,columnNames;
+    PreparedStatement ps=null;
+    Connection ct=null;
+    ResultSet rs=null;
+    public StuModel(){
+    	rowData=new Vector<>();
+    	columnNames=new Vector<>();
+    	columnNames.add("学号");
+    	columnNames.add("名字");
+    	columnNames.add("性别");
+    	columnNames.add("年龄");
+    	columnNames.add("籍贯");
+    	columnNames.add("系别");
+    try {
+    	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");    
+    	ct=DriverManager.getConnection
+    			("jdbc:sqlserver://127.0.0.1:1433;DatabaseName=students","sa","xpslovedkl");
+    	ps=ct.prepareStatement("select * from stu");
+    	rs=ps.executeQuery();
+    	while (rs.next()) {
+    		Vector hang=new Vector();
+    		hang.add(rs.getString(1));
+    		hang.add(rs.getString(2));
+    		hang.add(rs.getString(3));
+    		hang.add(rs.getInt(4));
+    		hang.add(rs.getString(5));
+    		hang.add(rs.getString(6));
+
+    		rowData.add(hang);
+    	}
+
+    } catch (Exception e) {
+    	// TODO Auto-generated catch block
+    	e.printStackTrace(); 
+    }finally {
+    	try {
+    		if(rs!=null){
+    			rs.close();			
+    		}
+    		if(ps!=null){
+    			ps.close();	
+    		} 
+    		if(ct!=null){
+    			ct.close();		
+    		}
+    	} catch (SQLException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+    	
+    }   
+    }
+	
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return this.columnNames.size();
+	}
+
+	@Override
+	public int getRowCount() {
+		// TODO Auto-generated method stub
+		return this.rowData.size();
+	}
+
+	@Override
+	public Object getValueAt(int row, int column) {
+		// TODO Auto-generated method stub
+		return ((Vector)this.rowData.get(row)).get(column);
+	}
+
+}

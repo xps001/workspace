@@ -1,0 +1,36 @@
+package com.test3;
+
+import java.awt.*;
+import java.rmi.activation.ActivationMonitor;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class StuAddDialog extends JDialog implements ActionListener{
+     JLabel jl1=null;
+     JLabel jl2=null;
+     JLabel jl3=null;
+     JLabel jl4=null;
+     JLabel jl5=null;
+     
+     JTextField jtf1=null;
+     JTextField jtf2=null;
+     JTextField jtf3=null;
+     JTextField jtf4=null;
+     JTextField jtf5=null;
+     
+     JButton jb1=null;
+     JButton jb2=null;
+     
+     JPanel jp1=null;
+     JPanel jp2=null;
+     JPanel jp3=null;
+     public StuAddDialog(){
+    	 
+     }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
